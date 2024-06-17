@@ -1,0 +1,10 @@
+body {
+    background-color: grey;
+}
+.container {
+    position: absolute;
+    left: 15%;
+}
+.bar:hover {
+    fill: white;
+}
