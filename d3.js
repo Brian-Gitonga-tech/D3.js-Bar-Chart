@@ -29,12 +29,6 @@ req.onload = () => {
                     .range([p, w - p])
     const xAxis = d3.axisBottom(xAxisScale)
     const yAxis = d3.axisLeft(yScale)
-    const tooltip = d3.select("body")
-                      .append("h1")
-                      .attr("id", "tooltip")
-                      .style("visibility", "hidden")
-                      .style("width", "auto")
-                      .style("height", "auto")
     const svg = d3.select("body")
                   .append("svg")
                   .attr("class", "container")
@@ -47,6 +41,7 @@ req.onload = () => {
                   .enter()
                   .append("rect")
                   .attr("class", "bar")
+                  .attr("fill", "skyblue")
                   .attr("data-gdp", (d) => {return d[1]})
                   .attr("data-date", (d) => {return d[0]})
                   .attr("x", (d, i) => {
@@ -62,17 +57,6 @@ req.onload = () => {
                   .append("title")
                   .text((d) => {
                      return d[0] + "," + " " + "$" + d[1] + " " + "Bilions"
-                  })
-                  .on("mouseover", (d) => {
-                     tooltip.transition()
-                     .style("visibility", "visible")
-                     
-                     tooltip.text(d[0]) 
-                     document.querySelector('#tooltip').setAttribute("data-date", d[0])
-                  })
-                  .on("mouseout", (d) => {
-                     tooltip.transition()
-                     .style("visibility", "hidden")
                   })
             svg.append("g")
                .attr("id", "x-axis")
